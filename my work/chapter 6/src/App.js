@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Products from './Products';
 import UserForm from './UserForm';
-import JumboTronComponent from './JumboTronComponents';
+//import JumboTronComponent from './JumboTronComponents';
 
 function App() {
   return (
     <div>
-    <JumboTronComponent /> 
+    <UserForm Component /> 
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+
 class UserForm extends Component {
     constructor(props) {
         super(props);
@@ -19,6 +20,14 @@ class UserForm extends Component {
                             !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
                         ) {
                             errors.email = 'Invalid email address';
+                        } else if (values.email.length < 10) {
+                            errors.email = 'Email address too short';
+                        }
+                        if (!values.password) {
+                            errors.password = 'Required';
+                        }
+                        else if (values.password.length < 8) {
+                            errors.password = 'Password too short';
                         }
                         return errors;
                     }}
@@ -32,16 +41,20 @@ class UserForm extends Component {
                     {({ isSubmitting }) => (
                         <Form>
                             <Field type="email" name="email" />
+                            <span style={{ color:"red", fontWeight: "bold" }}>
                             <ErrorMessage name="email" component="div" />
+                            </span> 
                             <Field type="password" name="password" />
+                            <span style={{ color:"red", fontWeight: "bold" }}>
                             <ErrorMessage name="password" component="div" />
+                            </span> 
                             <button type="submit" disabled={isSubmitting}>
                                 Submit
                             </button>
                         </Form>
                     )}
                 </Formik>
-                Beginning React
+                Thank you
             </div>
         )
     }
